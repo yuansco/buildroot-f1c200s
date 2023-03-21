@@ -2372,4 +2372,8 @@ menu "Text editors and viewers"
 	source "package/vim/Config.in"
 endmenu
 
+menu "Board Utility"
+    source "package/ssd1306_linux/Config.in"
+endmenu
+
 endmenu

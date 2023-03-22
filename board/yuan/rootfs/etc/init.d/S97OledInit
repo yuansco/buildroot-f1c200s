@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# Init oled module
+# source in https://github.com/armlabs/ssd1306_linux
+#
+
+DAEMON="Oled Module"
+
+test() {
+        # i2c device probe
+        i2cdetect -y -r 0
+        # write 4 lines test
+        ssd1306_bin -m "aaaaa\n\bbbbb\nccccc\nddddd"
+        sleep 2
+        # clear whole screen
+        ssd1306_bin -c
+}
+
+start() {
+	printf 'Initialize %s...' "$DAEMON"
+
+        # OLED init
+	ssd1306_bin -I 128x64
+
+        # turn on display
+        ssd1306_bin -d 1f
+
+        test
+
+        # write string
+        ssd1306_bin -l "Hi F1C200s"
+
+	return "OK"
+}
+
+stop() {
+	printf 'Stopping %s...' "$DAEMON"
+
+        # clear whole screen
+        ssd1306_bin -c
+
+	return "OK"
+}
+
+restart() {
+	stop
+	sleep 1
+	start
+}
+
+case "$1" in
+	start|stop|restart)
+		"$1";;
+	reload)
+		# Restart, since there is no true "reload" feature.
+		restart;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}"
+		exit 1
+esac
+

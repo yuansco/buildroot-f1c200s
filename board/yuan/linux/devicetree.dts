@@ -12,12 +12,6 @@
 		#size-cells = <1>;
 		ranges;
 
-		// for flash boot
-		//bootargs = "console=ttyS0,115200 earlyprintk rootwait init=/preinit root=/dev/mtdblock2 rootfstype=squashfs overlayfsdev=/dev/mtdblock3";
-
-		// for sd-card boot
-		bootargs = "console=ttyS0,115200 earlyprintk rootwait init=/preinit root=/dev/mmcblk0p3";
-
 	};
 
 	panel: panel {

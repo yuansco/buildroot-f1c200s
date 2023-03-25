@@ -10,14 +10,14 @@ test() {
         # i2c device probe
         i2cdetect -y -r 0
         # write 4 lines test
-        ssd1306_bin -m "aaaaa\n\bbbbb\nccccc\nddddd"
+        ssd1306_bin -m "1234567890\n\bbbbb\nccccc\nddddd"
         sleep 2
         # clear whole screen
         ssd1306_bin -c
 }
 
 start() {
-	printf 'Initialize %s...' "$DAEMON"
+	printf 'Initialize %s...\n' "$DAEMON"
 
         # OLED init
 	ssd1306_bin -I 128x64
@@ -30,16 +30,16 @@ start() {
         # write string
         ssd1306_bin -l "Hi F1C200s"
 
-	return "OK"
+	return 0
 }
 
 stop() {
-	printf 'Stopping %s...' "$DAEMON"
+	printf 'Stopping %s...\n' "$DAEMON"
 
         # clear whole screen
         ssd1306_bin -c
 
-	return "OK"
+	return 0
 }
 
 restart() {

@@ -6,29 +6,32 @@
 
 DAEMON="Oled Module"
 
-test() {
-        # i2c device probe
-        i2cdetect -y -r 0
-        # write 4 lines test
-        ssd1306_bin -m "1234567890\n\bbbbb\nccccc\nddddd"
-        sleep 2
-        # clear whole screen
-        ssd1306_bin -c
+i2ctest() {
+	echo "scan /dev/i2c-0 :"
+	# i2c device probe
+	i2cdetect -y -r 0
+	echo
 }
 
 start() {
 	printf 'Initialize %s...\n' "$DAEMON"
 
-        # OLED init
+	i2ctest
+
+	# OLED init
 	ssd1306_bin -I 128x64
 
-        # turn on display
-        ssd1306_bin -d 1f
+	# clear whole screen
+	ssd1306_bin -c
 
-        test
+	# normal orientation display
+	ssd1306_bin -r 0
 
-        # write string
-        ssd1306_bin -l "Hi F1C200s"
+	# turn on display
+	ssd1306_bin -d 1
+
+	# write string
+	ssd1306_bin -l "Hi F1C200s"
 
 	return 0
 }

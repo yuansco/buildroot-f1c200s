@@ -4,7 +4,7 @@
 #include "suniv-f1c100s.dtsi"
 
 / {
-	model = "F1C200s Dev Board";
+	model = "TinyEmbedded";
 	compatible = "allwinner,suniv-f1c100s";
 
 	chosen {

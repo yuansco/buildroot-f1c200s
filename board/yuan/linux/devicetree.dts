@@ -13,23 +13,6 @@
 		ranges;
 
 	};
-
-	panel: panel {
-		compatible = "qiaodian,qd43003c0-40", "simple-panel";
-		#address-cells = <1>;
-		#size-cells = <0>;
-
-		port@0 {
-			reg = <0>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			panel_input: endpoint@0 {
-				reg = <0>;
-				remote-endpoint = <&tcon0_out_lcd>;
-			};
-		};
-	};
 };
 
 &spi0 {
@@ -166,16 +149,11 @@
 };
 
 &tcon0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&lcd_rgb565_pins>;
-	status = "okay";
+	status = "disabled";
 };
 
 &tcon0_out {
-	tcon0_out_lcd: endpoint@0 {
-		reg = <0>;
-		remote-endpoint = <&panel_input>;
-	};
+	status = "disabled";
 };
 
 &codec {

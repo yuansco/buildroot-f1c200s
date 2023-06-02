@@ -1,0 +1,5 @@
+config BR2_PACKAGE_MOTION_ANGLE
+	bool "motion_angle"
+	help
+	  motion_angle package.
+

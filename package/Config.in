@@ -2374,6 +2374,7 @@ endmenu
 
 menu "Board Utility"
     source "package/ssd1306_linux/Config.in"
+    source "package/motion_angle/Config.in"
 endmenu
 
 endmenu
